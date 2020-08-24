@@ -5,19 +5,14 @@ import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import { createMuiTheme, withStyles, makeStyles, ThemeProvider } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import { green, purple } from '@material-ui/core/colors';
+
 
 class App extends Component {
   state = {
     todos: [],
   };
-
-  
-
   componentDidMount() {
-    fetch("https://groc-api.herokuapp.com/orders")
+    fetch("https://groc-api.herokuapp.com/orders?order_status=Approved")
       .then((res) => res.json())
       .then((data) => {
         this.setState({ todos: data });
@@ -26,7 +21,7 @@ class App extends Component {
       .catch(console.log);
   }
   // [...]
-  
+
   List(ordered_items) {
     // var tbody ='';
     var data = [];
@@ -46,10 +41,10 @@ class App extends Component {
     return (
       <div className="container">
         <div className="col-xs-12">
-          <h1>My orders</h1>
+          <h1>Rejected List</h1>
           {this.state.todos.map((todo) =>
             (() => {
-              if (todo.shop_id === "5f392e2a7b25630017007fec") {
+              if (todo.shop_id === "5f3630a5fee41a005ff2d047") {
                 var ordered_items = todo.ordered_items;
                 return (
                   <Accordion>
@@ -81,18 +76,7 @@ class App extends Component {
             </p>
           ))}
           </Typography>
-         
         </AccordionDetails>
-        <Button variant="outlined" color="secondary" onClick={()=>{
-          console.log(todo);
-        }}>
-            Accept
-          </Button>
-          <Button variant="outlined" color="primary"  onClick={()=>{
-          console.log(todo);
-        }}>
-            Reject
-          </Button>
       </Accordion>
                 );
               }

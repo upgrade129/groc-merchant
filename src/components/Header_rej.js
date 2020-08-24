@@ -238,7 +238,7 @@ export default function Dashboard() {
               <DeleteIcon />
             </ListItemIcon>
             <Link  href="/Header_acc" variant="body2">
-              <ListItemText primary="Accepted" />
+            <ListItemText primary="Accepted" />
             </Link>
           </ListItem>
           <ListItem button>
@@ -257,7 +257,7 @@ export default function Dashboard() {
          <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container} id="page">
-          <Orders />
+          <Rejected />
         </Container>
       </main> 
 
