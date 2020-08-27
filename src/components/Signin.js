@@ -12,6 +12,8 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import axios from 'axios';
+
 
 function Copyright() {
   return (
@@ -46,6 +48,28 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
+function auth(){
+  console.log("hiiii")
+  var pass = document.getElementById("password").value;
+  var user = document.getElementById("email").value;
+  axios
+  .post('http://groc-api.herokuapp.com/auth/local', {
+    identifier: user,
+    password: pass,
+  })
+  .then(response => {
+    // Handle success.
+    console.log('Well done!');
+    console.log('User profile', response.data.user);
+    console.log('User token', response.data.jwt);
+    
+  })
+  .catch(error => {
+    // Handle error.
+    console.log('An error occurred:', error.response);
+  });
+}
 export default function SignIn() {
   const classes = useStyles();
 
@@ -87,12 +111,34 @@ export default function SignIn() {
             label="Remember me"
           />
           <Button
-            type="submit"
             fullWidth
             variant="contained"
             color="primary"
             className={classes.submit}
-            href= "Header"
+            onClick={() => { console.log("hiiii")
+            var pass = document.getElementById("password").value;
+            var user = document.getElementById("email").value;
+            axios
+            .post('http://groc-api.herokuapp.com/auth/local', {
+              identifier: user,
+              password: pass,
+            })
+            .then(response => {
+              // Handle success.
+              console.log('Well done!');
+              console.log('User profile', response.data.user);
+              console.log('User token', response.data.jwt);
+              localStorage.setItem("user",response.data.user);
+              localStorage.setItem("user",response.data.jwt);
+              window.location.href = 'Header.js';
+              
+            })
+            .catch(error => {
+              // Handle error.
+              console.log('An error occurred:', error.response);
+              window.location.href = 'Header';
+            });}}
+
           >
             Sign In
           </Button>
