@@ -119,7 +119,7 @@ export default function SignIn() {
             var pass = document.getElementById("password").value;
             var user = document.getElementById("email").value;
             axios
-            .post('http://groc-api.herokuapp.com/auth/local', {
+            .post('https://groc-api.herokuapp.com/auth/local', {
               identifier: user,
               password: pass,
             })
