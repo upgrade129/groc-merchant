@@ -70,7 +70,7 @@ function auth(){
     console.log('An error occurred:', error.response);
   });
 }
-export default function SignIn() {
+export default function SignIn(props) {
   const classes = useStyles();
 
   return (
@@ -130,7 +130,8 @@ export default function SignIn() {
               console.log('User token', response.data.jwt);
               localStorage.setItem("user",response.data.user);
               localStorage.setItem("user",response.data.jwt);
-              window.location.href = 'Header.js';
+              props.history.push('/orders')
+              // this.props.history.push("/new/url")
               
             })
             .catch(error => {
