@@ -130,7 +130,7 @@ export default function SignIn(props) {
               console.log('User token', response.data.jwt);
               localStorage.setItem("user",response.data.user);
               localStorage.setItem("user",response.data.jwt);
-              props.history.push('/orders')
+              props.history.push('/Header')
               // this.props.history.push("/new/url")
               
             })
