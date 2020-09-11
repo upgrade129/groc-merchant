@@ -12,6 +12,8 @@ import IconButton from '@material-ui/core/IconButton';
 import Badge from '@material-ui/core/Badge';
 import Container from '@material-ui/core/Container';
 import DeleteIcon from '@material-ui/icons/Delete';
+import { Route, Redirect } from 'react-router'
+
 
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
@@ -174,6 +176,24 @@ export default function Dashboard() {
 
 //   }
 
+function header(){
+  console.log("header click");
+  return(<Redirect to="/Header"/>);
+}
+  
+function accepted(){
+  console.log("header click");
+  return(<Redirect to="/Header_acc"/>);
+}
+  
+function rejected(){
+  console.log("header click");
+  return(<Redirect to="/Header_rej"/>);
+}
+  
+
+
+
   return (
     <div className={classes.root}>
      
@@ -225,15 +245,15 @@ export default function Dashboard() {
         </div>
               <Divider />
         <div>
-          <ListItem button>
+          <ListItem button onClick={header}>
             <ListItemIcon>
-              <HomeOutlinedIcon href="/Header" />
+              <HomeOutlinedIcon  />
             </ListItemIcon>
-            <Link href="/Header" variant="body2">
+            <Link variant="body2">
               <ListItemText  primary="MY ORDERS" />
             </Link>
           </ListItem>
-          <ListItem button>
+          <ListItem button onClick={accepted}>
             <ListItemIcon>
               <DeleteIcon />
             </ListItemIcon>
@@ -241,7 +261,7 @@ export default function Dashboard() {
               <ListItemText primary="Accepted" />
             </Link>
           </ListItem>
-          <ListItem button>
+          <ListItem button onClick={rejected}>
             <ListItemIcon>
               <DeleteIcon />
             </ListItemIcon>
